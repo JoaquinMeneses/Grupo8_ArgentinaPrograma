@@ -1,0 +1,96 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+ :root{
+    --bg-color:#455A64;
+    --primary-color:#212832;
+    --secondary-color: #FED36A;
+    --txt-color: #fff;
+ }
+ body{
+    background-color: var(--bg-color);
+ }
+
+ main{
+    display: flex;
+    box-sizing: content-box;
+    gap: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+ }
+ input,button,select{
+    background-color: #FED36A;
+    border: var(--bg-color);
+    width: 100%;
+    margin: 0rem 1rem 0rem 1rem;
+ }
+ button{
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+ }
+ /*HEADER*/
+ header{
+    box-sizing: content-box;
+    background-color: var(--primary-color);
+    min-width: 100%;
+    min-height: 8%;
+    top: 0;
+    padding: 2rem 0rem 2rem 0rem;
+
+ }
+ .buscador{ 
+      width: 22%;
+      padding: 8px;
+    border-radius: 0.5rem;
+    background-color: var(--secondary-color);
+    display: flex;
+    margin-left: 1rem;
+    justify-content: start;
+    position: absolute;
+ }
+ .menu-btn{
+    display: flex;
+    gap: 1rem;
+    margin-top: 4%;
+    justify-content: center;
+ }
+ .btn{
+    background-color: var(--secondary-color);
+ }
+ /*CONTAINER*/
+ .container{
+    margin-top: 1rem;
+ }
+ .contenedor{
+    background-color: var(--primary-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    height: 40.5rem;
+
+ }
+ .space-filters{
+    width: fit-content;
+    display: flex;
+    border: none;
+ }
+ /*SIDEBAR*/
+ .sidebar{
+    min-width: fit-content;
+    border-radius: 0.5rem;
+    background-color: var(--primary-color);
+ }
+ button.btn-create{
+    margin: 0;
+    margin-top: 1rem;
+    align-items: flex-start;
+ }
+ button.btn-tareas{
+    margin: 1rem 0rem 0rem 0rem;
+    
+    align-items: flex-end;
+ }
+.tareas{
+    margin-top: 30rem;
+ }
