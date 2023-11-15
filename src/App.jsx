@@ -1,9 +1,11 @@
 import React from "react";
-import Template from "./pages/Template";
+import Main from "./components/Main";
 
 function App() {
   return (
-    <Template/>
+    <>
+      <Main />
+    </>
   );
 }
 
