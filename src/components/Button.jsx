@@ -1,9 +1,7 @@
-import React from "react";
+import React from 'react'
 
-export const Button = ({ content, style }) => {
+export const Button = (Text) => {
   return (
-    <button className={`px-4 text-base font-semibold leading-9 ${style}`}>
-      {content}
-    </button>
-  );
-};
+    <button>{Text}</button>
+  )
+}
