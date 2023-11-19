@@ -22,9 +22,17 @@ import "./nav-var.css"
             </div>
         </div>
     </dialog>
-    <div className="create-var">
-      <button className="btn btn-secondary">Button</button>
-      <button className="btn btn-secondary">Button</button>
+    <div className="create-var pl-20 flex gap-10 overflow-x-auto overscroll-x-contain ">
+      <button className="btn btn-secondary w-20">Button</button>
+      <button className="btn btn-secondary w-20">Button</button>
+      <button className="btn btn-secondary w-20">Button</button>
+      <button className="btn btn-secondary w-20">Button</button>
+      <button className="btn btn-secondary w-20">Button</button>
+      <button className="btn btn-secondary w-20">Button</button>
+      <button className="btn btn-secondary w-20">Button</button>
+      <button className="btn btn-secondary w-20">Button</button>
+      <button className="btn btn-secondary w-20">Button</button>
+      <button className="btn btn-secondary w-20">Button</button>
       </div>
   </div>
   )
