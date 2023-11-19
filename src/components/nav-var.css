@@ -1,0 +1,5 @@
+.create-var{
+    display: flex;
+    width: -webkit-fill-available;
+    justify-content: end;
+  }
