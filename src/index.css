@@ -6,10 +6,5 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
-
-.create-var{
-  display: flex;
-  width: -webkit-fill-available;
-  justify-content: end;
+  color: white;
 }
