@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useState }from "react";
 import CreateGroupNotes from "./CreateGroupNotes";
 
 const NavBar = () => {
+  // Guardar Títulos colocados en input
+  const [buttons, setButtons] = useState([])
+
+  //recibimos por parámetro el inputTitle
+  const showButtons = (inputTitle) => {
+    // Guardar lógica en setButton y ...prevButton copia todos los elementos anteriores del array
+    setButtons((prevButton) => [...prevButton, inputTitle]);
+  }
+
   return (
     <div className="bg-white/10 flex flex-row p-5 ">
-      <CreateGroupNotes />
+      <CreateGroupNotes showButton={showButtons}/>
       <div className="ml-20 flex gap-10">
-        <button className="btn btn-secondary text-white">Lista de super</button>
-        <button className="btn btn-secondary text-white">Medicamentos</button>
-        <button className="btn btn-secondary text-white">Herramientas</button>
+        {/* Renderizado de botones */}
+        {buttons.map((buttonRender, index) => (
+          <button className="btn" key={index}>
+            {buttonRender}
+          </button>
+        ))}
       </div>
     </div>
   );

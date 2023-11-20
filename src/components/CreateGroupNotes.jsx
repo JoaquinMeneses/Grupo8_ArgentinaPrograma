@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState} from "react";
 
-const CreateGroupNotes = () => {
-  return (
+const CreateGroupNotes = ({ showButton }) => {
+  const [inputTitle, setInputTitle] = useState("");
+
+  const handleTitle = (event) => {
+    setInputTitle(event.target.value);
+  }
+
+  const handleSave = () => {
+    showButton( inputTitle );
+    document.getElementById("my_modal_1").close();
+  }
+
+  return ( 
     <>
       <button
         className="btn btn-primary text-white"
@@ -9,7 +20,7 @@ const CreateGroupNotes = () => {
       >
         Crear grupo de notas
       </button>
-      <dialog id="my_modal_1" className="modal">
+      <dialog id="my_modal_1" className="modal bg-black-600/100">
         <div className="modal-box">
           <form method="dialog" className="method flex flex-row-reverse">
             <button className="btn btn-close">
@@ -27,12 +38,12 @@ const CreateGroupNotes = () => {
           </form>
           <div className="new-gorup">
             <h3 className="font-bold text-lg">Titulo</h3>
-            <input type="text" className="mb-9 " />
+            <input type="text" className="mb-9 bg-gray-600" onChange={handleTitle} value={inputTitle} />
             <h3 className="font-bold text-lg">Descripción</h3>
-            <input type="text" className="p-8" />
+            <input type="text" className="p-8 bg-gray-600" />
           </div>
           <div className="modal-action">
-            <button className="btn">Guardar</button>
+            <button className="btn" onClick={handleSave} >Guardar</button>
           </div>
         </div>
       </dialog>
