@@ -1,18 +1,18 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 
 const CreateGroupNotes = ({ showButton }) => {
   const [inputTitle, setInputTitle] = useState("");
 
   const handleTitle = (event) => {
     setInputTitle(event.target.value);
-  }
+  };
 
   const handleSave = () => {
-    showButton( inputTitle );
+    showButton(inputTitle);
     document.getElementById("my_modal_1").close();
-  }
+  };
 
-  return ( 
+  return (
     <>
       <button
         className="btn btn-primary text-white"
@@ -36,14 +36,31 @@ const CreateGroupNotes = ({ showButton }) => {
               </svg>
             </button>
           </form>
-          <div className="new-gorup">
-            <h3 className="font-bold text-lg">Titulo</h3>
-            <input type="text" className="mb-9 bg-gray-600" onChange={handleTitle} value={inputTitle} />
-            <h3 className="font-bold text-lg">Descripción</h3>
-            <input type="text" className="p-8 bg-gray-600" />
+          <div className="new-group">
+            <label htmlFor="createGroupTitle" className="block max-w-fit">
+              <h3 className="font-bold text-lg">Titulo</h3>
+            </label>
+            <input
+              id="createGroupTitle"
+              type="text"
+              className="mb-9 bg-gray-600 w-[391px]"
+              onChange={handleTitle}
+              value={inputTitle}
+            />
+            <label htmlFor="createGroupDescription" className="block max-w-fit">
+              <h3 className="font-bold text-lg">Descripción</h3>
+            </label>
+            <textarea
+              id="createGroupDescription"
+              rows={5}
+              cols={50}
+              className="p-2 mb-9 bg-gray-600 resize-none"
+            ></textarea>
           </div>
           <div className="modal-action">
-            <button className="btn" onClick={handleSave} >Guardar</button>
+            <button className="btn" onClick={handleSave}>
+              Guardar
+            </button>
           </div>
         </div>
       </dialog>
