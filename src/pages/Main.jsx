@@ -1,10 +1,9 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "../components/NavBar";
 
 import Note from "../components/Note";
 
 const Main = () => {
-
   const [notes, setNotes] = useState([]);
 
   const handleCreateNote = () => {
@@ -47,14 +46,13 @@ const Main = () => {
   };
 
   useEffect(() => {
-    let localStorageData = localStorage.getItem('storageNotes')
+    let localStorageData = localStorage.getItem("storageNotes");
     localStorageData && setNotes(JSON.parse(localStorageData));
-  }, [ ])
+  }, []);
 
   useEffect(() => {
-    localStorage.setItem('storageNotes', JSON.stringify(notes))
-  }, [ notes ])
-
+    localStorage.setItem("storageNotes", JSON.stringify(notes));
+  }, [notes]);
 
   return (
     <>
@@ -85,7 +83,9 @@ const Main = () => {
                   Crear nota
                 </button>
               </li>
-              <li><a>...</a></li>
+              <li>
+                <a>...</a>
+              </li>
             </ul>
           </details>
         </div>
