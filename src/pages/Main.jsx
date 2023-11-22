@@ -46,6 +46,14 @@ const Main = () => {
     setNotes(updatedNotes);
   };
 
+  useEffect(() => {
+    let localStorageData = localStorage.getItem('storageNotes')
+    localStorageData && setNotes(JSON.parse(localStorageData));
+  }, [ ])
+
+  useEffect(() => {
+    localStorage.setItem('storageNotes', JSON.stringify(notes))
+  }, [ notes ])
 
 
   return (

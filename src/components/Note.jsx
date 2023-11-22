@@ -49,12 +49,12 @@ const Note = ({ titleNote, contentNote, dateNote, idNote, onChangeNote, onDelete
         </div>
         {/* Content */}
         <div className="border-b-[1px] border-gray-600">
-          <h2 className="text-center text-ellipsis text-2xl">{titleNote}</h2>
+          <h2 className="text-center text-ellipsis overflow-hidden text-2xl">{titleNote}</h2>
         </div>
-        <p> {contentNote} </p>
+        <p className="text-ellipsis overflow-hidden"> {contentNote} </p>
         {/* Footer */}
         <div className="border-t-[1px] border-gray-600">
-          <span className="text-ellipsis"> {dateNote} </span>
+          <span className="text-ellipsis overflow-hidden"> {dateNote} </span>
         </div>
       </div>
     </div>
