@@ -1,8 +1,24 @@
-import React, { useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-const ModalNote = ({ handleCreateNote }) => {
+const ModalNote = () => {
+  const [groupNote, setGroupNote] = useState([]);
   let title = useRef();
-  let description = useRef();
+
+  const handleCreateGroupNote = (titleInput) => {
+    let title = titleInput.current.value;
+
+    const newGroup = {
+      id: groupNote.length + 1,
+      title: title,
+    };
+    setGroupNote([...groupNote, newGroup]);
+    console.log(groupNote);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("storageGroupNote", JSON.stringify(groupNote))
+  }, [groupNote]);
+
   return (
     <>
       <button
@@ -35,7 +51,7 @@ const ModalNote = ({ handleCreateNote }) => {
               <button className="btn btn-error">Cancelar</button>
               <button
                 className="btn btn-success"
-                onClick={() => console.log("Probando")}
+                onClick={() => handleCreateGroupNote(title)}
               >
                 Crear
               </button>

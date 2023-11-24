@@ -19,6 +19,7 @@ const Main = () => {
     };
     console.log(notes);
     setNotes([...notes, newNote]);
+    // setCurrentNotes ([...notes, newNote]);
   };
 
   const handleDeleteNote = (id) => {
@@ -54,9 +55,33 @@ const Main = () => {
     localStorage.setItem("storageNotes", JSON.stringify(notes));
   }, [notes]);
 
+
+  // Buscador
+  // const [filter, setFilter] = useState('')
+  // const [currentNotes, setCurrentNotes] = useState('')
+
+  // const handleFilterChange = (e) => {
+  //   setFilter(e.target.value);
+  // };
+
+  // useEffect(() => {
+  //   const filteredNotes = notes.filter((note) =>
+  //     note.title.toLowerCase().includes(filter.toLowerCase())
+  //   );
+  //   setNotes(filter !== "" ? filteredNotes : notes);
+  // }, [filter, notes]);
+
+
   return (
     <>
       <NavBar />
+      {/* Buscador */}
+      {/* <input
+        placeholder="Buscar tarea..."
+        value={filter}
+        onChange={handleFilterChange}
+        className="p-2 ml-5 mt-10 mb-3 rounded-md text-black"
+      /> */}
       <div className="container my-10 mx-auto bg-white/20 rounded-lg">
         <div className=" flex justify-end pt-3 pr-3 gap-2">
           <CreateNote handleCreateNote={handleCreateNote} />
