@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../components/NavBar";
-
 import Note from "../components/Note";
+import CreateNote from "../components/modals/CreateNote";
 
 const Main = () => {
   const [notes, setNotes] = useState([]);
 
-  const handleCreateNote = () => {
-    const title = prompt("Ingresa el título de la nota:");
-    const content = prompt("Ingresa la nota:");
+  const handleCreateNote = (titleInput, descriptionInput) => {
+    let title = titleInput.current.value;
+    let content = descriptionInput.current.value;
     const date = new Date();
 
     const newNote = {
@@ -17,7 +17,7 @@ const Main = () => {
       content: content,
       date: date.toLocaleString(),
     };
-
+    console.log(notes);
     setNotes([...notes, newNote]);
   };
 
@@ -57,37 +57,48 @@ const Main = () => {
   return (
     <>
       <NavBar />
-      {/* <Test/> */}
       <div className="container my-10 mx-auto bg-white/20 rounded-lg">
-        <div className=" flex justify-end pt-3 pr-3">
-          <details className="dropdown dropdown-left">
-            <summary className="m-1 btn">
+        <div className=" flex justify-end pt-3 pr-3 gap-2">
+          <CreateNote handleCreateNote={handleCreateNote} />
+          <div className="dropdown dropdown-bottom dropdown-end">
+            <label tabIndex={0} className="btn">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                strokeWidth="1.5"
+                strokeWidth={1.5}
                 stroke="currentColor"
                 className="w-6 h-6"
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                  d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"
                 />
               </svg>
-            </summary>
-            <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+            >
               <li>
-                <button className="btn btn-primary" onClick={handleCreateNote}>
-                  Crear nota
-                </button>
+                <a
+                  className="text-error hover:bg-error/50"
+                  onClick={handleDeleteNote}
+                >
+                  Borrar grupo de notas
+                </a>
               </li>
               <li>
-                <a>...</a>
+                <a
+                  className="text-info hover:bg-info/50"
+                  onClick={handleChangeNote}
+                >
+                  Editar grupo de notas
+                </a>
               </li>
             </ul>
-          </details>
+          </div>
         </div>
         <h1 className="text-center text-4xl">Medicamentos</h1>
         {/* Parámetro titulo */}
