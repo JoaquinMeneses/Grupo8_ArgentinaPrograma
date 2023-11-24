@@ -17,8 +17,9 @@ const Main = () => {
       content: content,
       date: date.toLocaleString(),
     };
-
+    
     setNotes([...notes, newNote]);
+    setCurrentNotes ([...notes, newNote]);
   };
 
   const handleDeleteNote = (id) => {
@@ -54,9 +55,22 @@ const Main = () => {
     localStorage.setItem("storageNotes", JSON.stringify(notes));
   }, [notes]);
 
+  const [filter, setFilter] = useState('')
+  const [currentNotes, setCurrentNotes] = useState('')
+
+  const handleFilterChange = (e) =>{
+    setFilter(e.target.value)
+  }
+
+  useEffect(() =>{
+  setNotes(notes.filter(note => note.title.toLowerCase().includes(filter.toLowerCase())))
+  }, [filter, notes])
+
   return (
     <>
       <NavBar />
+      <input placeholder="Buscar tarea..." value={filter} onChange={handleFilterChange} className="p-2 ml-5 mt-10 mb-3 rounded-md text-black" />
+      
       {/* <Test/> */}
       <div className="container my-10 mx-auto bg-white/20 rounded-lg">
         <div className=" flex justify-end pt-3 pr-3">
