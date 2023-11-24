@@ -1,5 +1,5 @@
 import React, { useState }from "react";
-import CreateGroupNotes from "./CreateGroupNotes";
+import CreateGroupNotes from "./modals/CreateGroupNotes";
 
 const NavBar = () => {
   // Guardar Títulos colocados en input
