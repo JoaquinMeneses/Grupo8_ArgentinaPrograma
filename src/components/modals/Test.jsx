@@ -7,11 +7,11 @@ const ModalNote = ({ handleCreateNote }) => {
     <>
       <button
         className="btn btn-primary text-white"
-        onClick={() => document.getElementById("my_modal_5").showModal()}
+        onClick={() => document.getElementById("my_modal_1").showModal()}
       >
         Crear grupo de notas
       </button>
-      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+      <dialog id="my_modal_1" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-lg text-center">
             Crear grupo de notas
