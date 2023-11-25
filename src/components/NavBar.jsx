@@ -1,27 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import CreateGroupNotes from "./modals/CreateGroupNotes";
-import Test from "./modals/Test";
 
 const NavBar = () => {
-  // Guardar Títulos colocados en input
-  const [buttons, setButtons] = useState([]);
+  const [groupNotes, setGroupNotes] = useState([]);
+  let title = useRef();
 
-  //recibimos por parámetro el inputTitle
-  const showButtons = (inputTitle) => {
-    // Guardar lógica en setButton y ...prevButton copia todos los elementos anteriores del array
-    setButtons((prevButton) => [...prevButton, inputTitle]);
+  const handleCreateGroupNotes = (titleInput) => {
+    let title = titleInput.current.value;
+
+    const newGroup = {
+      id: groupNotes.length + 1,
+      title: title,
+      notes: [],
+    };
+    setGroupNotes([...groupNotes, newGroup]);
   };
 
+  useEffect(() => {
+    let localStorageData = localStorage.getItem("storageGroupNotes");
+    localStorageData && setGroupNotes(JSON.parse(localStorageData));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("storageGroupNotes", JSON.stringify(groupNotes));
+  }, [groupNotes]);
+
+  const [activeTab, setActiveTab] = useState(null);
+
+  function changeTabActive(id) {
+    setActiveTab(id);
+  }
+  
   return (
     <div className="bg-white/10 flex flex-row p-5 ">
-      <Test />
-      <div className="ml-20 flex gap-10">
-        {/* Renderizado de botones */}
-        {buttons.map((buttonRender, index) => (
-          <button className="btn" key={index}>
-            {buttonRender}
-          </button>
-        ))}
+      <div className="flex gap-2">
+        <CreateGroupNotes
+          handleCreateGroupNotes={handleCreateGroupNotes}
+          title={title}
+        />
+        <div role="tablist" className="tabs tabs-boxed">
+          {groupNotes.map((groupNote) => (
+            <a
+              role="tab"
+              className={`tab ${
+                activeTab === groupNote.id ? "tab-active" : ""
+              }`}
+              key={groupNote.id}
+              onClick={() => changeTabActive(groupNote.id)}
+            >
+              {groupNote.title}
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   );
