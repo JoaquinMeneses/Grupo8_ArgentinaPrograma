@@ -16,10 +16,8 @@ const Main = () => {
       title: title,
       content: content,
       date: date.toLocaleString(),
-    };
-    
+    }
     setNotes([...notes, newNote]);
-    setCurrentNotes ([...notes, newNote]);
   };
 
   const handleDeleteNote = (id) => {
@@ -55,21 +53,25 @@ const Main = () => {
     localStorage.setItem("storageNotes", JSON.stringify(notes));
   }, [notes]);
 
-  const [filter, setFilter] = useState('')
-  const [currentNotes, setCurrentNotes] = useState('')
+
+
+  const [searchString, setSearchString] = useState('')
+  const [currentNotes, setCurrentNotes] = useState([])
 
   const handleFilterChange = (e) =>{
-    setFilter(e.target.value)
+    setSearchString(e.target.value)
   }
+  useEffect(()=>{
+    setCurrentNotes(notes.filter(note => note.title.toLowerCase().includes(searchString.toLowerCase())))
+  }, [searchString, notes])
 
-  useEffect(() =>{
-  setNotes(notes.filter(note => note.title.toLowerCase().includes(filter.toLowerCase())))
-  }, [filter, notes])
+
+
 
   return (
     <>
       <NavBar />
-      <input placeholder="Buscar tarea..." value={filter} onChange={handleFilterChange} className="p-2 ml-5 mt-10 mb-3 rounded-md text-black" />
+      <input placeholder="Buscar tarea..." value={searchString} onChange={handleFilterChange} className="p-2 ml-5 mt-10 mb-3 rounded-md text-black" />
       
       {/* <Test/> */}
       <div className="container my-10 mx-auto bg-white/20 rounded-lg">
@@ -106,7 +108,7 @@ const Main = () => {
         <h1 className="text-center text-4xl">Medicamentos</h1>
         {/* Parámetro titulo */}
         <div className="py-10 gap-4 rounded-lg flex justify-center flex-wrap">
-          {notes.map((note, index) => (
+          {currentNotes.map((note, index) => (
             <Note
               key={index}
               titleNote={note.title}
