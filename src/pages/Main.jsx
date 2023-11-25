@@ -53,9 +53,21 @@ const Main = () => {
     localStorage.setItem("storageNotes", JSON.stringify(notes));
   }, [notes]);
 
+  const [searchString, setSearchString] = useState('')
+  const [currentNotes, setCurrentNotes] = useState([])
+
+  const handleFilterChange = (e) =>{
+    setSearchString(e.target.value)
+  }
+  useEffect(()=>{
+    setCurrentNotes(notes.filter(note => note.title.toLowerCase().includes(searchString.toLowerCase())))
+  }, [searchString, notes])
+
   return (
     <>
       <NavBar />
+      <input placeholder="Buscar tarea..." value={searchString} onChange={handleFilterChange} className="p-2 ml-5 mt-10 mb-3 rounded-md text-black" />
+      
       <div className="container my-10 mx-auto bg-white/20 rounded-lg">
         <div className=" flex justify-end pt-3 pr-3 gap-2">
           <CreateNote handleCreateNote={handleCreateNote} />
@@ -102,7 +114,7 @@ const Main = () => {
         <h1 className="text-center text-4xl">Medicamentos</h1>
         {/* Parámetro titulo */}
         <div className="py-10 gap-4 rounded-lg flex justify-center flex-wrap">
-          {notes.map((note, index) => (
+          {currentNotes.map((note, index) => (
             <Note
               key={index}
               titleNote={note.title}
