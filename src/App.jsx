@@ -1,8 +1,8 @@
 import React from "react";
-import Main from "./pages/Main";
+import TaskList from "./pages/TaskList";
 
 function App() {
-  return <Main />;
+  return <TaskList />;
 }
 
 export default App;

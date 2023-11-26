@@ -7,11 +7,11 @@ const ModalNote = ({ handleCreateNote }) => {
     <>
       <button
         className="btn btn-primary text-white"
-        onClick={() => document.getElementById("my_modal_2").showModal()}
+        onClick={() => document.getElementById("my_modal_1").showModal()}
       >
         Crear nota
       </button>
-      <dialog id="my_modal_2" className="modal modal-bottom sm:modal-middle">
+      <dialog id="my_modal_1" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-2xl text-center">Crear nota</h3>
           <form className="form-control w-full">
