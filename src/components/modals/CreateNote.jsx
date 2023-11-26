@@ -13,7 +13,7 @@ const ModalNote = ({ handleCreateNote }) => {
       </button>
       <dialog id="my_modal_2" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
-          <h3 className="font-bold text-lg text-center">Crear nota</h3>
+          <h3 className="font-bold text-2xl text-center">Crear nota</h3>
           <form className="form-control w-full">
             <div>
               <label className="label pb-[0.2rem]" htmlFor="inputTitle">
@@ -41,10 +41,10 @@ const ModalNote = ({ handleCreateNote }) => {
             </div>
           </form>
           <div className="modal-action">
-            <form method="dialog" className="flex gap-2">
-              <button className="btn btn-error">Cancelar</button>
+            <form method="dialog" className="w-full flex justify-end gap-5">
+              <button className="btn btn-error hover:shadow-[0_0_10px_#cb185e]">Cancelar</button>
               <button
-                className="btn btn-success"
+                className="btn btn-success hover:shadow-[0_0_10px_#8acb18]"
                 onClick={() => handleCreateNote(title, description)}
               >
                 Crear

@@ -1,4 +1,5 @@
 import React from "react";
+import EditNote from "./modals/EditNote";
 
 const Note = ({
   titleNote,
@@ -19,7 +20,7 @@ const Note = ({
     <div className="card w-2/3 sm:w-1/4 lg:w-1/5 bg-base-100 shadow-xl">
       <div className="card-body p-3">
         {/* Header */}
-        <div className="dropdown dropdown-bottom dropdown-end flex justify-end">
+        <header className="dropdown dropdown-bottom dropdown-end flex justify-end">
           <label tabIndex={0} className="btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -41,28 +42,29 @@ const Note = ({
             className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a className="text-error hover:bg-error/50" onClick={handleDeleteNote}>
+              <a
+                className="text-error hover:bg-error/50"
+                onClick={handleDeleteNote}
+              >
                 Borrar nota
               </a>
             </li>
             <li>
-              <a className="text-info hover:bg-info/50" onClick={handleChangeNote}>
-                Editar nota
-              </a>
+              <EditNote handleChangeNote={handleChangeNote}/>
             </li>
           </ul>
-        </div>
+        </header>
         {/* Content */}
-        <div className="border-b-[1px] border-gray-600">
+        <div className="border-b-[1px] border-gray-600 pb-4">
           <h2 className="text-center text-ellipsis overflow-hidden text-2xl">
             {titleNote}
           </h2>
         </div>
-        <p className="text-ellipsis overflow-hidden"> {contentNote} </p>
+        <p className="text-ellipsis overflow-hidden py-2"> {contentNote} </p>
         {/* Footer */}
-        <div className="border-t-[1px] border-gray-600">
+        <footer className="border-t-[1px] border-gray-600 flex justify-center pt-4 pb-1">
           <span className="text-ellipsis overflow-hidden"> {dateNote} </span>
-        </div>
+        </footer>
       </div>
     </div>
   );

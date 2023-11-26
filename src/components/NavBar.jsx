@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import CreateGroupNotes from "./modals/CreateGroupNotes";
+/* import CreateGroupNotes from "./modals/CreateGroupNotes"; */
 
 const NavBar = () => {
   const [groupNotes, setGroupNotes] = useState([]);
@@ -33,7 +33,7 @@ const NavBar = () => {
   
   return (
     <div className="bg-white/10 flex flex-row p-5 ">
-      <div className="flex gap-2">
+      {/* <div className="flex gap-2">
         <CreateGroupNotes
           handleCreateGroupNotes={handleCreateGroupNotes}
           title={title}
@@ -52,7 +52,7 @@ const NavBar = () => {
             </a>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -25,17 +25,11 @@ const Main = () => {
     setNotes(updatedNotes);
   };
 
-  const handleChangeNote = (id) => {
-    const noteToEdit = notes.find((note) => note.id === id);
+  const handleChangeNote = (id, titleChanged, descriptionChanged) => {
+    /* const noteToEdit = notes.find((note) => note.id === id); */
 
-    const newTitle = prompt(
-      "Ingresa el nuevo título de la nota:",
-      noteToEdit.title
-    );
-    const newContent = prompt(
-      "Ingresa el nuevo contenido de la nota:",
-      noteToEdit.content
-    );
+    const newTitle = titleChanged.current.value;
+    const newContent = descriptionChanged.current.value;
 
     const updatedNotes = notes.map((note) =>
       note.id === id ? { ...note, title: newTitle, content: newContent } : note
@@ -53,25 +47,42 @@ const Main = () => {
     localStorage.setItem("storageNotes", JSON.stringify(notes));
   }, [notes]);
 
-  const [searchString, setSearchString] = useState('')
-  const [currentNotes, setCurrentNotes] = useState([])
+  const [searchString, setSearchString] = useState("");
+  const [currentNotes, setCurrentNotes] = useState([]);
 
-  const handleFilterChange = (e) =>{
-    setSearchString(e.target.value)
-  }
-  useEffect(()=>{
-    setCurrentNotes(notes.filter(note => note.title.toLowerCase().includes(searchString.toLowerCase())))
-  }, [searchString, notes])
+  const handleFilterChange = (e) => {
+    setSearchString(e.target.value);
+  };
+  useEffect(() => {
+    setCurrentNotes(
+      notes.filter((note) =>
+        note.title.toLowerCase().includes(searchString.toLowerCase())
+      )
+    );
+  }, [searchString, notes]);
 
   return (
     <>
-      <NavBar />
-      <input placeholder="Buscar tarea..." value={searchString} onChange={handleFilterChange} className="p-2 ml-5 mt-10 mb-3 rounded-md text-black" />
-      
-      <div className="container my-10 mx-auto bg-white/20 rounded-lg">
-        <div className=" flex justify-end pt-3 pr-3 gap-2">
+      {/* <NavBar /> */}
+      {/* <input placeholder="Buscar tarea..." value={searchString} onChange={handleFilterChange} className="p-2 ml-5 mt-10 mb-3 rounded-md text-black" /> */}
+
+      <div className="container my-10 mx-auto bg-white/20 rounded-lg"> 
+        <div className=" flex justify-between px-3 pt-3"> {/*  justify-end  */}
+          <input
+            type="text"
+            placeholder="Buscar tarea..."
+            value={searchString}
+            onChange={handleFilterChange}
+            className="input input-bordered w-full max-w-xs placeholder:hover:text-primary placeholder:duration-200" /*  absolute left-1/2 translate-x-[-50%] text-center  */
+          />
+          {/* <input
+            placeholder="Buscar tarea..."
+            value={searchString}
+            onChange={handleFilterChange}
+            className="p-2 rounded-md text-black"
+          /> */}
           <CreateNote handleCreateNote={handleCreateNote} />
-          <div className="dropdown dropdown-bottom dropdown-end">
+          {/* <div className="dropdown dropdown-bottom dropdown-end">
             <label tabIndex={0} className="btn">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -109,9 +120,9 @@ const Main = () => {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
-        <h1 className="text-center text-4xl">Medicamentos</h1>
+        <h1 className="text-center text-5xl mt-2 font-bold">Notas</h1>
         {/* Parámetro titulo */}
         <div className="py-10 gap-4 rounded-lg flex justify-center flex-wrap">
           {currentNotes.map((note, index) => (
