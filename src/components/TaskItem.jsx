@@ -1,5 +1,5 @@
 import React from "react";
-
+let hola
 const Note = ({
   titleNote,
   contentNote,
