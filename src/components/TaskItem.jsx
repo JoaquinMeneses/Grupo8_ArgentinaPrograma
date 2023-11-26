@@ -5,7 +5,8 @@ const Note = ({
   contentNote,
   dateNote,
   idNote,
-  handleEditNote,
+  isRealizedNote,
+  handleRealizedNote,
   handleDeleteNote,
 }) => {
   return (
@@ -13,7 +14,7 @@ const Note = ({
       <div className="card-body p-3">
         {/* Header */}
         <header className="dropdown dropdown-bottom dropdown-end flex justify-end">
-          <summary  tabIndex={0} className="btn">
+          <summary tabIndex={0} className="btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -41,23 +42,49 @@ const Note = ({
                 Borrar nota
               </a>
             </li>
-            <li >
-              <a
-                className="text-success hover:bg-success/50"
-                onClick={() => handleEditNote(idNote)}
-              >
-                Realizar nota
-              </a>
+            <li>
+              {isRealizedNote ? (
+                <a
+                  className="text-warning hover:bg-warning/50"
+                  onClick={() => handleRealizedNote(idNote)}
+                >
+                  Me arrepentí
+                </a>
+              ) : (
+                <a
+                  className="text-success hover:bg-success/50"
+                  onClick={() => handleRealizedNote(idNote)}
+                >
+                  Realizar nota
+                </a>
+              )}
             </li>
           </ul>
         </header>
         {/* Content */}
-        <div className="border-b-[1px] border-gray-600 pb-4">
-          <h2 className="text-center text-ellipsis overflow-hidden text-2xl">
-            {titleNote}
-          </h2>
-        </div>
-        <p className="text-ellipsis overflow-hidden py-2"> {contentNote} </p>
+        {isRealizedNote ? (
+          <>
+            <div className="border-b-[1px] border-gray-600 pb-4">
+              <h2 className="text-center text-ellipsis overflow-hidden text-2xl line-through decoration-error">
+                {titleNote}
+              </h2>
+            </div>
+            <p className="text-ellipsis overflow-hidden py-2 line-through decoration-error">
+              {contentNote}
+            </p>
+          </>
+        ) : (
+          <>
+            <div className="border-b-[1px] border-gray-600 pb-4">
+              <h2 className="text-center text-ellipsis overflow-hidden text-2xl">
+                {titleNote}
+              </h2>
+            </div>
+            <p className="text-ellipsis overflow-hidden py-2">
+              {contentNote}
+            </p>
+          </>
+        )}
         {/* Footer */}
         <footer className="border-t-[1px] border-gray-600 flex justify-center pt-4 pb-1">
           <span className="text-ellipsis overflow-hidden"> {dateNote} </span>

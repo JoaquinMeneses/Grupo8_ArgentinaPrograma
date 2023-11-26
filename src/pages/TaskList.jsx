@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 import TaskItem from "../components/TaskItem";
 import CreateNote from "../components/modals/TaskForm";
@@ -17,7 +17,7 @@ const Main = () => {
       id: uuidv4(),
       title: title,
       content: content,
-      realized: false,
+      isRealized: false,
       date: date.toLocaleString(),
     };
     setNotes([...notes, newNote]);
@@ -32,9 +32,14 @@ const Main = () => {
 
   const handleRealizedNote = (id) => {
     const updatedNotes = notes.map((note) =>
-      note.id === id ? { ...note, realized: true } : note
+      note.id === id ? { ...note, isRealized: !note.isRealized } : note
     );
 
+    notes.map((note) => {
+      if (note.id === id) {
+        console.log(note.isRealized);
+      }
+    });
     setNotes(updatedNotes);
   };
 
@@ -84,6 +89,7 @@ const Main = () => {
               contentNote={note.content}
               dateNote={note.date}
               idNote={note.id}
+              isRealizedNote={note.isRealized}
               handleRealizedNote={handleRealizedNote}
               handleDeleteNote={handleDeleteNote}
             />
