@@ -3,10 +3,19 @@ import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import TaskItem from "../components/TaskItem";
-import CreateNote from "../components/modals/TaskForm";
+import TaskForm from "../components/TaskForm";
+import Alert from "../components/Alert";
 
 const Main = () => {
   const [notes, setNotes] = useState([]);
+  const [alert, setAlert] = useState(null);
+
+  const handleAlert = (type) => {
+    setAlert(type);
+    setTimeout(() => {
+      setAlert(null);
+    }, 3000);
+  };
 
   const handleCreateNote = (titleInput, descriptionInput) => {
     let title = titleInput.current.value;
@@ -21,13 +30,13 @@ const Main = () => {
       date: date.toLocaleString(),
     };
     setNotes([...notes, newNote]);
-    console.log(newNote.id + " created");
+    handleAlert("created");
   };
 
   const handleDeleteNote = (id) => {
-    console.log(id + " deleted");
     const updatedNotes = notes.filter((note) => note.id !== id);
     setNotes(updatedNotes);
+    handleAlert("deleted");
   };
 
   const handleRealizedNote = (id) => {
@@ -68,6 +77,7 @@ const Main = () => {
 
   return (
     <>
+      {alert && <Alert type={alert} />}
       <div className="container my-5 mx-auto bg-white/20 rounded-lg">
         <div className=" flex justify-between px-3 pt-3">
           <input
@@ -77,7 +87,7 @@ const Main = () => {
             onChange={handleFilterChange}
             className="input input-bordered w-full max-w-xs focus:outline-0	 focus:input-primary"
           />
-          <CreateNote handleCreateNote={handleCreateNote} />
+          <TaskForm handleCreateNote={handleCreateNote} />
         </div>
         <h1 className="text-center text-5xl mt-2 font-bold">Notas</h1>
         {/* Parámetro titulo */}

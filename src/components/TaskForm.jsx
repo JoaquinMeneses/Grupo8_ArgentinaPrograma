@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-const ModalNote = ({ handleCreateNote }) => {
+const TaskForm = ({ handleCreateNote }) => {
   let title = useRef();
   let description = useRef();
   return (
@@ -24,6 +24,7 @@ const ModalNote = ({ handleCreateNote }) => {
                 className="input input-bordered w-full"
                 id="inputTitle"
                 required
+                autoComplete="off"
                 ref={title}
               />
             </div>
@@ -57,4 +58,4 @@ const ModalNote = ({ handleCreateNote }) => {
   );
 };
 
-export default ModalNote;
+export default TaskForm;
