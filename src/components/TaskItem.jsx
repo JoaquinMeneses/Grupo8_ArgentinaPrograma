@@ -71,6 +71,12 @@ const Note = ({
             <p className="text-ellipsis overflow-hidden py-2 line-through decoration-error">
               {contentNote}
             </p>
+            {/* Footer */}
+            <footer className="border-t-[1px] border-gray-600 flex justify-center pt-4 pb-1">
+              <span className="text-ellipsis overflow-hidden line-through decoration-error">
+                {dateNote}
+              </span>
+            </footer>
           </>
         ) : (
           <>
@@ -79,18 +85,15 @@ const Note = ({
                 {titleNote}
               </h2>
             </div>
-            <p className="text-ellipsis overflow-hidden py-2">
-              {contentNote}
-            </p>
+            <p className="text-ellipsis overflow-hidden py-2">{contentNote}</p>
+            {/* Footer */}
+            <footer className="border-t-[1px] border-gray-600 flex justify-center pt-4 pb-1">
+              <span className="text-ellipsis overflow-hidden">{dateNote}</span>
+            </footer>
           </>
         )}
-        {/* Footer */}
-        <footer className="border-t-[1px] border-gray-600 flex justify-center pt-4 pb-1">
-          <span className="text-ellipsis overflow-hidden"> {dateNote} </span>
-        </footer>
       </div>
     </div>
   );
 };
-
 export default Note;

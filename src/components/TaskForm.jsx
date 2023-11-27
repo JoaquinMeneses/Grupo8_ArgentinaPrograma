@@ -1,14 +1,34 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 const TaskForm = ({ handleCreateNote }) => {
-  let title = useRef();
-  let description = useRef();
+  const title = useRef();
+  const description = useRef();
+  const [isTitleDisabled, setIsTitleDisabled] = useState(true);
+  const [isDescriptionDisabled, setIsDescriptionDisabled] = useState(true);
+
+  const handleInputChange = () => {
+    setIsTitleDisabled(title.current.value.trim().length === 0);
+    setIsDescriptionDisabled(description.current.value.trim().length === 0);
+  };
+
+  const handleShowModal = () => {
+    document.getElementById("my_modal_1").showModal();
+    setIsTitleDisabled(true);
+    setIsDescriptionDisabled(true);
+  };
+
+  const handleCreateNoteAndReset = () => {
+    handleCreateNote(title, description);
+    title.current.value = "";
+    description.current.value = "";
+    setIsTitleDisabled(true);
+    setIsDescriptionDisabled(true);
+    document.getElementById("my_modal_1").close();
+  };
+
   return (
     <>
-      <button
-        className="btn btn-primary text-white"
-        onClick={() => document.getElementById("my_modal_1").showModal()}
-      >
+      <button className="btn btn-primary text-white" onClick={handleShowModal}>
         Crear nota
       </button>
       <dialog id="my_modal_1" className="modal modal-bottom sm:modal-middle">
@@ -26,11 +46,12 @@ const TaskForm = ({ handleCreateNote }) => {
                 required
                 autoComplete="off"
                 ref={title}
+                onChange={handleInputChange}
               />
             </div>
             <div>
               <label className="label pb-[0.2rem]" htmlFor="inputDescription">
-                <span className="label-text">Description</span>
+                <span className="label-text">Descripción</span>
               </label>
               <textarea
                 className="textarea textarea-bordered w-full resize-none"
@@ -38,15 +59,17 @@ const TaskForm = ({ handleCreateNote }) => {
                 required
                 rows={6}
                 ref={description}
+                onChange={handleInputChange}
               ></textarea>
             </div>
           </form>
           <div className="modal-action">
-            <form method="dialog" className="w-full flex justify-end gap-5">
-              <button className="btn btn-error hover:shadow-[0_0_10px_#cb185e]">Cancelar</button>
+            <form method="dialog" className="w-full flex justify-end gap-4">
+              <button className="btn btn-error">Cancelar</button>
               <button
-                className="btn btn-success hover:shadow-[0_0_10px_#8acb18]"
-                onClick={() => handleCreateNote(title, description)}
+                className="btn btn-success"
+                onClick={() => handleCreateNoteAndReset(title, description)}
+                disabled={isTitleDisabled || isDescriptionDisabled}
               >
                 Crear
               </button>
