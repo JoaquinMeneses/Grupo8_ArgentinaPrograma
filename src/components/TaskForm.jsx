@@ -26,6 +26,12 @@ const TaskForm = ({ handleCreateNote }) => {
     document.getElementById("my_modal_1").close();
   };
 
+  const handleCancelNote = () => {
+    title.current.value = "";
+    description.current.value = "";
+    document.getElementById("my_modal_1").close();
+  }
+
   return (
     <>
       <button className="btn btn-primary text-white" onClick={handleShowModal}>
@@ -65,7 +71,7 @@ const TaskForm = ({ handleCreateNote }) => {
           </form>
           <div className="modal-action">
             <form method="dialog" className="w-full flex justify-end gap-4">
-              <button className="btn btn-error">Cancelar</button>
+              <button className="btn btn-error" onClick={handleCancelNote}>Cancelar</button>
               <button
                 className="btn btn-success"
                 onClick={() => handleCreateNoteAndReset(title, description)}
